@@ -3,17 +3,19 @@ version: 0.2
 phases:
   pre_build:
     commands:
+      - echo Installing Docker...
+      - yum install -y docker  # Installs Docker if it's not available
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 036761080504.dkr.ecr.ap-south-1.amazonaws.com
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 036761080504.dkr.ecr.ap-south-1.amazonaws.com
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t your-app-name .
-      - docker tag your-app-name:latest 036761080504.dkr.ecr.ap-south-1.amazonaws.com/your-app-name:latest
+      - docker build -t to-do-app .  # Replace 'to-do-app' with your app name
+      - docker tag to-do-app:latest 036761080504.dkr.ecr.ap-south-1.amazonaws.com/to-do-app:latest
   post_build:
     commands:
       - echo Pushing the Docker image to Amazon ECR...
-      - docker push 036761080504.dkr.ecr.ap-south-1.amazonaws.com/your-app-name:latest
+      - docker push 036761080504.dkr.ecr.ap-south-1.amazonaws.com/to-do-app:latest
 
 artifacts:
   files:
