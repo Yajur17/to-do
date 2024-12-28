@@ -25,4 +25,4 @@ jobs:
           
       # Deploy website to S3
       - name: Deploy to S3
-        run: aws s3 sync . s3://to-do-application --delete
+        run: aws s3 sync AWS/ s3://to-do-application/AWS/ --delete
