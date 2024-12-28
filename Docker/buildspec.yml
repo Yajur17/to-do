@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 036761080504.dkr.ecr.ap-south-1.amazonaws.com
+  build:
+    commands:
+      - echo Building the Docker image...
+      - docker build -t your-app-name .
+      - docker tag your-app-name:latest 036761080504.dkr.ecr.ap-south-1.amazonaws.com/your-app-name:latest
+  post_build:
+    commands:
+      - echo Pushing the Docker image to Amazon ECR...
+      - docker push 036761080504.dkr.ecr.ap-south-1.amazonaws.com/your-app-name:latest
+
+artifacts:
+  files:
+    - '**/*'

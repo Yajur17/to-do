@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do App</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Logout button placed outside the layout -->
+  <button id="logout-btn" onclick="logout()" style="display: none; position: fixed; top: 20px; right: 20px;">Logout</button>
+
+  <div class="app-container">
+    <div class="header">
+      <div id="currentUsername" class="welcome-message" style="font-weight: normal;"></div>
+      <div class="app-title">To-Do App</div>
+    </div>
+    <div id="name-container" class="form-container">
+      <input type="text" id="user-name" placeholder="Enter your name" required>
+      <button onclick="setUserName()">Start</button>
+    </div>
+    <div id="todo-container" class="form-container" style="display: none;">
+      <input type="text" id="todo-input" placeholder="Enter a task" required>
+      <input type="date" id="todo-date" required>
+      <input type="time" id="todo-time" required>
+      <button onclick="addTodo()">Add</button>
+    </div>
+    <ul class="todo-list" id="todo-list"></ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
