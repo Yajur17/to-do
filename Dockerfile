@@ -2,7 +2,7 @@ FROM node:14-alpine
 
 # Install dependencies
 WORKDIR /app
-COPY package.json package-lock.json ./
+COPY Docker/package.json Docker/package-lock.json ./
 RUN npm install
 
 # Copy the application code
