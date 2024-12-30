@@ -1,12 +1,10 @@
 FROM node:14-alpine
 
-# Install dependencies
 WORKDIR /app
-COPY Docker/package.json Docker/package-lock.json ./
+
+COPY Docker/package*.json .
 RUN npm install
 
-# Copy the application code
-COPY . .
+COPY . . 
 
-# Set the default command to run your app
 CMD ["npm", "start"]
